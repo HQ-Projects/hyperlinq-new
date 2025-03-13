@@ -92,11 +92,11 @@ const Hero = () => {
             <div className="relative z-10 glass-panel rounded-3xl overflow-hidden shadow-glass p-1">
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden parallax" data-speed="0.2">
                 <div className="absolute inset-0 bg-gradient-to-br from-hyperlink-primary/10 to-hyperlink-secondary/10 mix-blend-overlay"></div>
-                <div className="h-full w-full flex items-center justify-center bg-hyperlink-light">
-                  <div className="w-full h-full flex items-center justify-center">
-                    <div className="text-5xl font-bold text-hyperlink-primary animate-pulse-soft">Hyperlinq</div>
-                  </div>
-                </div>
+                <img 
+                  src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" 
+                  alt="Digital Marketing Technology" 
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
             
