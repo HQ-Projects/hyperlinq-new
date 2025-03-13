@@ -1,6 +1,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -27,6 +28,14 @@ const Hero = () => {
     document.addEventListener('mousemove', handleMouseMove);
     return () => document.removeEventListener('mousemove', handleMouseMove);
   }, []);
+
+  // AI avatar images
+  const aiAvatarImages = [
+    "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&q=80",
+    "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&q=80",
+    "https://images.unsplash.com/photo-1507808973436-a4ed7b5e87c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&q=80",
+    "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&q=80",
+  ];
 
   return (
     <section 
@@ -69,15 +78,18 @@ const Hero = () => {
             
             <div className="flex items-center space-x-6 pt-6 animate-fade-in-down" style={{ animationDelay: '0.4s' }}>
               <div className="flex -space-x-3">
-                {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-gray-200 flex items-center justify-center overflow-hidden">
-                    <div className={cn("w-full h-full bg-gradient-to-br", 
-                      i % 4 === 0 ? "from-blue-400 to-purple-500" : 
-                      i % 3 === 0 ? "from-green-400 to-blue-500" : 
-                      i % 2 === 0 ? "from-yellow-400 to-orange-500" : 
-                      "from-purple-400 to-pink-500"
-                    )}></div>
-                  </div>
+                {aiAvatarImages.map((src, i) => (
+                  <Avatar key={i} className="border-2 border-white w-10 h-10">
+                    <AvatarImage src={src} alt={`AI client ${i + 1}`} />
+                    <AvatarFallback className={cn("text-white font-medium", 
+                      i % 4 === 0 ? "bg-gradient-to-br from-blue-400 to-purple-500" : 
+                      i % 3 === 0 ? "bg-gradient-to-br from-green-400 to-blue-500" : 
+                      i % 2 === 0 ? "bg-gradient-to-br from-yellow-400 to-orange-500" : 
+                      "bg-gradient-to-br from-purple-400 to-pink-500"
+                    )}>
+                      AI
+                    </AvatarFallback>
+                  </Avatar>
                 ))}
               </div>
               <div>
