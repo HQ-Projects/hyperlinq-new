@@ -2,6 +2,7 @@
 import React from 'react';
 import AnimatedCard from './AnimatedCard';
 import { CheckCircle, Trophy, Users, Globe } from 'lucide-react';
+import { AspectRatio } from './ui/aspect-ratio';
 
 const About = () => {
   const stats = [
@@ -80,23 +81,31 @@ const About = () => {
           <div className="md:order-1">
             <div className="relative animate-fade-in-right">
               <div className="absolute -inset-4 bg-gradient-to-r from-hyperlink-primary/5 to-hyperlink-secondary/5 rounded-3xl blur-xl"></div>
-              <AnimatedCard className="relative glass-panel rounded-2xl overflow-hidden aspect-[4/3]">
+              <AnimatedCard className="relative glass-panel rounded-2xl overflow-hidden h-full">
                 <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/0"></div>
-                <div className="p-8 h-full flex flex-col justify-between">
-                  <div className="text-center space-y-3">
+                <div className="p-6 flex flex-col h-full">
+                  <div className="text-center mb-6">
                     <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-hyperlink-primary text-white text-2xl font-bold">H</div>
-                    <h3 className="text-2xl font-bold">Hyperlinq Technology</h3>
+                    <h3 className="text-2xl font-bold mt-3">Hyperlinq Technology</h3>
                     <p className="text-gray-600">Digital Marketing Agency</p>
                   </div>
                   
-                  <div className="grid grid-cols-2 gap-4 mt-6">
+                  <AspectRatio ratio={16/10} className="mb-6 rounded-xl overflow-hidden bg-gray-100">
+                    <img 
+                      src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                      alt="Our Team" 
+                      className="object-cover w-full h-full"
+                    />
+                  </AspectRatio>
+                  
+                  <div className="grid grid-cols-2 gap-4 mt-auto">
                     {stats.map((stat, index) => (
-                      <div key={index} className="bg-white/70 backdrop-blur-sm p-4 rounded-xl border border-white/30 text-center">
-                        <div className="mx-auto w-10 h-10 flex items-center justify-center mb-2">
+                      <div key={index} className="bg-white/70 backdrop-blur-sm p-3 rounded-xl border border-white/30 text-center">
+                        <div className="mx-auto w-8 h-8 flex items-center justify-center mb-1">
                           {stat.icon}
                         </div>
-                        <div className="text-2xl font-bold">{stat.value}</div>
-                        <div className="text-sm text-gray-500">{stat.label}</div>
+                        <div className="text-lg font-bold">{stat.value}</div>
+                        <div className="text-xs text-gray-500">{stat.label}</div>
                       </div>
                     ))}
                   </div>
