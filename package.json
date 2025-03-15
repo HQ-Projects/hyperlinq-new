@@ -64,11 +64,7 @@
     "zod": "^3.23.8"
   },
   "resolutions": {
-<<<<<<< HEAD
-    "react/jsx-runtime": "19.0.0"
-=======
     "react/jsx-runtime": "^18.2.0"
->>>>>>> 7a95882 (contact form blue added)
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

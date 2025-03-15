@@ -38,14 +38,8 @@ const App = () => (
           <Route path="/services/web-design" element={<WebDesignPage />} />
           <Route path="/services/seo" element={<SeoPage />} />
           <Route path="/services/social-media" element={<SocialMediaPage />} />
-<<<<<<< HEAD
-          {/* Commented out until components are ready */}
-          {/* <Route path="/services/ppc" element={<PpcPage />} /> */}
-          {/* <Route path="/services/graphic-design" element={<GraphicDesignPage />} /> */}
-=======
           <Route path="/services/ppc" element={<PpcPage />} />
           <Route path="/services/graphic-design" element={<GraphicDesignPage />} />
->>>>>>> 7a95882 (contact form blue added)
           <Route path="/services/ai-automation" element={<AiAutomationPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/blog" element={<Blog />} />

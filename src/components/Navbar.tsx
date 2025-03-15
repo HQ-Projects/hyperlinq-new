@@ -86,14 +86,7 @@ const Navbar = () => {
       <div className="container-custom">
         <div className="flex items-center justify-between">
           {/* Logo */}
-<<<<<<< HEAD
           <Link to="/" className="z-10 flex items-center space-x-1">
-            <img 
-              src="/public/hq-logo-normal.png" 
-              alt="Hyperlinq Technology Logo" 
-              className="h-20 md:h-24" 
-=======
-          <Link to="/" className="z-1 flex items-center space-x-1">
             <img 
               src="/hq-logo-normal.png" 
               alt="Hyperlinq Technology Logo" 
@@ -106,7 +99,6 @@ const Navbar = () => {
                   parent.innerHTML = '<span class="text-xl font-bold text-hyperlink-primary">Hyperlinq</span><span class="text-xl font-bold">Technology</span>';
                 }
               }}
->>>>>>> 7a95882 (contact form blue added)
             />
           </Link>
 
