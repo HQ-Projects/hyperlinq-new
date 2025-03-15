@@ -192,13 +192,19 @@ const Contact = () => {
             <div className="glass-panel rounded-2xl p-6 mt-6">
               <h3 className="font-bold text-lg mb-4">Follow Us</h3>
               <div className="flex space-x-4">
-                {['facebook', 'twitter', 'instagram', 'linkedin'].map((social) => (
+                {[
+                  { name: 'linkedin', href: 'https://www.linkedin.com/company/hyperlinq-technology/' },
+                  { name: 'facebook', href: 'https://www.facebook.com/hyperlinqtechnology/' },
+                  { name: 'instagram', href: 'https://www.instagram.com/hyperlinq_technology/' }
+                ].map((social) => (
                   <a
-                    key={social}
-                    href="#"
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-10 h-10 rounded-full bg-hyperlink-light flex items-center justify-center text-hyperlink-primary hover:bg-hyperlink-primary hover:text-white transition-colors duration-300"
                   >
-                    <SocialIcon type={social} />
+                    <SocialIcon type={social.name} />
                   </a>
                 ))}
               </div>

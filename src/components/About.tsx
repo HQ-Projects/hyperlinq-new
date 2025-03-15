@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import AnimatedCard from './AnimatedCard';
 import { CheckCircle, Trophy, Users, Globe } from 'lucide-react';
 import { AspectRatio } from './ui/aspect-ratio';
@@ -8,12 +9,12 @@ const About = () => {
   const stats = [
     { 
       icon: <Users size={24} className="text-green-500" />,
-      value: "500+",
+      value: "320+",
       label: "Happy Clients"
     },
     { 
       icon: <Trophy size={24} className="text-yellow-500" />,
-      value: "50+",
+      value: "10+",
       label: "Awards Won"
     },
     { 
@@ -72,9 +73,9 @@ const About = () => {
             </ul>
             
             <div className="animate-fade-in-left" style={{ animationDelay: '0.4s' }}>
-              <a href="#contact" className="btn-primary mt-4">
-                Get In Touch
-              </a>
+              <Link to="/about" className="btn-primary mt-4">
+                Learn More About Us
+              </Link>
             </div>
           </div>
           

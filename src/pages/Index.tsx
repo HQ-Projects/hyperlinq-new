@@ -10,6 +10,7 @@ import Faq from '@/components/Faq';
 import CtaSection from '@/components/CtaSection';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import IndustryRecognition from '@/components/IndustryRecognition';
 
 const Index = () => {
   return (
@@ -19,6 +20,7 @@ const Index = () => {
       <Services />
       <About />
       <Testimonials />
+      <IndustryRecognition />
       <CaseStudies />
       <Faq />
       <CtaSection />

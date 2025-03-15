@@ -27,8 +27,10 @@ const CtaSection = () => {
             
             <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <a 
-                href="#contact" 
-                className="inline-flex items-center px-6 py-4 rounded-xl text-white font-medium bg-gradient-to-r from-hyperlink-primary to-hyperlink-secondary shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300"
+               href="https://tidycal.com/hyperlinq/30-minutes-free-good-sales-meeting" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               className="inline-flex items-center px-6 py-4 rounded-xl text-white font-medium bg-gradient-to-r from-hyperlink-primary to-hyperlink-secondary shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300"
               >
                 Schedule a Call
                 <ArrowRight size={20} className="ml-2" />

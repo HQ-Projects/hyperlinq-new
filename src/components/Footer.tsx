@@ -8,19 +8,21 @@ const Footer = () => {
     {
       title: 'Company',
       links: [
-        { name: 'About Us', href: '#about' },
+        { name: 'About Us', href: '/about' },
         { name: 'Services', href: '#services' },
         { name: 'Case Studies', href: '#' },
-        { name: 'Careers', href: '#' }
+        { name: 'Careers', href: '#' },
+        { name: 'Community', href: '/community' },
+        { name: 'Refund Policy', href: '/refund-policy' }
       ]
     },
     {
       title: 'Services',
       links: [
-        { name: 'SEO', href: '#services' },
+        { name: 'SEO', href: '/services/seo' },
         { name: 'Social Media', href: '#services' },
-        { name: 'PPC', href: '#services' },
-        { name: 'Web Design', href: '#services' }
+        { name: 'PPC', href: '/services/ppc' },
+        { name: 'Web Design', href: '/services/web-design' }
       ]
     },
     {
@@ -29,8 +31,23 @@ const Footer = () => {
         { name: 'info@hyperlinq.in', href: 'mailto:info@hyperlinq.in' },
         { name: '+91 8823831234', href: 'tel:+918823831234' },
         { name: 'Indore, India', href: '#' },
-        { name: 'Contact Us', href: '#contact' }
+        { name: 'Contact Us', href: '/contact' }
       ]
+    }
+  ];
+  
+  const socialLinks = [
+    { 
+      name: 'linkedin', 
+      href: 'https://www.linkedin.com/company/hyperlinq-technology/' 
+    },
+    { 
+      name: 'facebook', 
+      href: 'https://www.facebook.com/hyperlinqtechnology/' 
+    },
+    { 
+      name: 'instagram', 
+      href: 'https://www.instagram.com/hyperlinq_technology/' 
     }
   ];
   
@@ -43,9 +60,36 @@ const Footer = () => {
       <div className="container-custom relative z-10">
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           <div className="lg:col-span-2">
-            <div className="flex items-center space-x-1 mb-6">
-              <span className="text-2xl font-bold text-hyperlink-primary">Hyperlinq</span>
-              <span className="text-2xl font-bold">Technology</span>
+            <div className="flex items-center mb-6">
+              <img 
+                src="@/public/hq-logo-normal.png" 
+                alt="Hyperlinq Technology Logo" 
+                className="h-12 md:h-16" 
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  // Try different paths
+                  const paths = [
+                    "hq-logo-normal.png",
+                    "/hq-logo-normal.png",
+                    "./hq-logo-normal.png",
+                    "../public/hq-logo-normal.png",
+                    "/public/hq-logo-normal.png",
+                    "/assets/hq-logo-normal.png"
+                  ];
+                  
+                  let currentPathIndex = paths.indexOf(target.src.split('/').pop() || "");
+                  if (currentPathIndex < paths.length - 1) {
+                    target.src = paths[currentPathIndex + 1];
+                  } else {
+                    // Final fallback to text if all paths fail
+                    target.style.display = 'none';
+                    const parent = target.parentNode as HTMLElement;
+                    if (parent) {
+                      parent.innerHTML = '<span class="text-xl font-bold text-hyperlink-primary">Hyperlinq</span><span class="text-xl font-bold">Technology</span>';
+                    }
+                  }
+                }}
+              />
             </div>
             
             <p className="text-gray-600 mb-6 max-w-md">
@@ -53,13 +97,15 @@ const Footer = () => {
             </p>
             
             <div className="flex space-x-4">
-              {['facebook', 'twitter', 'instagram', 'linkedin'].map((social) => (
+              {socialLinks.map((social) => (
                 <a
-                  key={social}
-                  href="#"
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-hyperlink-primary hover:text-white hover:border-hyperlink-primary transition-colors duration-300"
                 >
-                  <SocialIcon type={social} />
+                  <SocialIcon type={social.name} />
                 </a>
               ))}
             </div>
@@ -91,14 +137,14 @@ const Footer = () => {
             </p>
             
             <div className="flex space-x-6">
+              <a href="/refund-policy" className="text-gray-500 hover:text-hyperlink-primary text-sm">
+                Refund Policy
+              </a>
               <a href="#" className="text-gray-500 hover:text-hyperlink-primary text-sm">
                 Privacy Policy
               </a>
               <a href="#" className="text-gray-500 hover:text-hyperlink-primary text-sm">
                 Terms of Service
-              </a>
-              <a href="#" className="text-gray-500 hover:text-hyperlink-primary text-sm">
-                Sitemap
               </a>
             </div>
           </div>

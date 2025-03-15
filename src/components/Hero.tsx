@@ -71,8 +71,13 @@ const Hero = () => {
               <a href="#services" className="btn-primary">
                 Explore Services
               </a>
-              <a href="#contact" className="btn-secondary">
-                Get In Touch
+              <a 
+                href="https://tidycal.com/hyperlinq/30-minutes-free-good-sales-meeting" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="btn-secondary"
+              >
+                Free Discovery Call
               </a>
             </div>
             
@@ -105,7 +110,7 @@ const Hero = () => {
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden parallax" data-speed="0.2">
                 <div className="absolute inset-0 bg-gradient-to-br from-hyperlink-primary/10 to-hyperlink-secondary/10 mix-blend-overlay"></div>
                 <img 
-                  src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" 
+                  src="/slider-home.jpg" 
                   alt="Digital Marketing Technology" 
                   className="w-full h-full object-cover"
                 />
