@@ -11,10 +11,13 @@ import CtaSection from '@/components/CtaSection';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import IndustryRecognition from '@/components/IndustryRecognition';
+import Seo from '@/components/Seo';
+import { getSeoConfig } from '@/utils/seo';
 
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <Seo config={getSeoConfig('home')} />
       <Navbar />
       <Hero />
       <Services />

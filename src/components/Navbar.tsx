@@ -47,11 +47,9 @@ const Navbar = () => {
       dropdownItems: [
         { name: 'SEO', href: '/services/seo' },
         { name: 'Social Media Management', href: '/services/social-media' },
-        { name: 'PPC', href: '/services/ppc' },
         { name: 'Web Design', href: '/services/web-design' },
-        { name: 'Graphic Design', href: '/services/graphic-design' },
-        { name: 'AI Automation', href: '/services/ai-automation' },
         { name: 'Digital Marketing', href: '/services/digital-marketing' },
+        { name: 'AI & Automation', href: '/services/ai-automation' },
       ]
     },
     { name: 'About', href: '/about' },
@@ -89,8 +87,11 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="z-10 flex items-center space-x-1">
-            <span className="text-xl md:text-2xl font-bold text-hyperlink-primary">Hyperlinq</span>
-            <span className="text-xl md:text-2xl font-bold">Technology</span>
+            <img 
+              src="/public/hq-logo-normal.png" 
+              alt="Hyperlinq Technology Logo" 
+              className="h-20 md:h-24" 
+            />
           </Link>
 
           {/* Desktop Menu */}
