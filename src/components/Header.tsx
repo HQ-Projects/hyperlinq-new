@@ -4,7 +4,11 @@ import { Menu, X, ChevronDown } from 'lucide-react';
 // Import the logo directly
 import logoImage from '/public/hq-logo-normal.png';
 
+<<<<<<< HEAD
 const Header: React.FC = () => {
+=======
+const Header = () => {
+>>>>>>> 7a95882 (contact form blue added)
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);

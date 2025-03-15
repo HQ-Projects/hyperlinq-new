@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 import DigitalMarketingPage from "./pages/services/DigitalMarketing";
 import Blog from "./pages/Blog";
+import BlogDetail from "./pages/BlogDetail";
 import WebDesignPage from "./pages/services/WebDesign";
 import SeoPage from "./pages/services/SeoPage";
 import SocialMediaPage from "./pages/services/SocialMediaPage";
@@ -19,6 +20,8 @@ import AboutPage from "./pages/AboutPage";
 import TestMotion from './components/TestMotion';
 import RefundPolicy from './pages/RefundPolicy';
 import CommunityPage from "./pages/CommunityPage";
+import ContactPage from "./pages/ContactPage";
+import ThankYouPage from './pages/ThankYouPage';
 
 const queryClient = new QueryClient();
 
@@ -35,15 +38,23 @@ const App = () => (
           <Route path="/services/web-design" element={<WebDesignPage />} />
           <Route path="/services/seo" element={<SeoPage />} />
           <Route path="/services/social-media" element={<SocialMediaPage />} />
+<<<<<<< HEAD
           {/* Commented out until components are ready */}
           {/* <Route path="/services/ppc" element={<PpcPage />} /> */}
           {/* <Route path="/services/graphic-design" element={<GraphicDesignPage />} /> */}
+=======
+          <Route path="/services/ppc" element={<PpcPage />} />
+          <Route path="/services/graphic-design" element={<GraphicDesignPage />} />
+>>>>>>> 7a95882 (contact form blue added)
           <Route path="/services/ai-automation" element={<AiAutomationPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogDetail />} />
           <Route path="/test-motion" element={<TestMotion />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="/community" element={<CommunityPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/thank-you" element={<ThankYouPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

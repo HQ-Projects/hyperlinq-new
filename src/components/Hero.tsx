@@ -40,7 +40,7 @@ const Hero = () => {
   return (
     <section 
       id="home" 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-16 md:pt-24 md:pb-24"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-16 md:pt-36 md:pb-24"
       ref={heroRef}
     >
       {/* Background elements */}
