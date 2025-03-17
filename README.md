@@ -72,3 +72,5 @@ Simply open [Lovable](https://lovable.dev/projects/edf414c7-9fca-4f5f-a2f6-545b4
 
 We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
 >>>>>>> 3d525c2 (Use tech stack vite_react_shadcn_ts)
+
+## Updated by Shoaib Khan
