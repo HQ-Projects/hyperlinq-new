@@ -10,8 +10,8 @@ const Footer = () => {
       links: [
         { name: 'About Us', href: '/about' },
         { name: 'Services', href: '#services' },
-        { name: 'Case Studies', href: '#' },
-        { name: 'Careers', href: '#' },
+        // { name: 'Case Studies', href: '#' },
+        { name: 'Careers', href: '/careers' },
         { name: 'Community', href: '/community' },
         { name: 'Refund Policy', href: '/refund-policy' }
       ]
@@ -20,7 +20,7 @@ const Footer = () => {
       title: 'Services',
       links: [
         { name: 'SEO', href: '/services/seo' },
-        { name: 'Social Media', href: '#services' },
+        { name: 'Social Media', href: '/services/social-media' },
         { name: 'PPC', href: '/services/ppc' },
         { name: 'Web Design', href: '/services/web-design' }
       ]
@@ -30,7 +30,7 @@ const Footer = () => {
       links: [
         { name: 'info@hyperlinq.in', href: 'mailto:info@hyperlinq.in' },
         { name: '+91 8823831234', href: 'tel:+918823831234' },
-        { name: 'Indore, India', href: '#' },
+        { name: ' Princes Business Skypark, 201, AB Rd, opp. Orbit Mall, Scheme No 54, Indore, Madhya Pradesh 452011', href: '#' },
         { name: 'Contact Us', href: '/contact' }
       ]
     }
@@ -140,10 +140,10 @@ const Footer = () => {
               <a href="/refund-policy" className="text-gray-500 hover:text-hyperlink-primary text-sm">
                 Refund Policy
               </a>
-              <a href="#" className="text-gray-500 hover:text-hyperlink-primary text-sm">
+              <a href="/privacy-policy" className="text-gray-500 hover:text-hyperlink-primary text-sm">
                 Privacy Policy
               </a>
-              <a href="#" className="text-gray-500 hover:text-hyperlink-primary text-sm">
+              <a href="/terms-of-service" className="text-gray-500 hover:text-hyperlink-primary text-sm">
                 Terms of Service
               </a>
             </div>

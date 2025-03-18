@@ -22,6 +22,11 @@ import RefundPolicy from './pages/RefundPolicy';
 import CommunityPage from "./pages/CommunityPage";
 import ContactPage from "./pages/ContactPage";
 import ThankYouPage from './pages/ThankYouPage';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from "./pages/TermsOfService";
+import CareersPage from "./pages/CareersPage";
+import CaseStudiesPage from "./pages/CaseStudiesPage";
+import ShreeHariYogaSeo from "./pages/case-studies/ShreeHariYogaSeo";
 
 const queryClient = new QueryClient();
 
@@ -43,12 +48,17 @@ const App = () => (
           <Route path="/services/ai-automation" element={<AiAutomationPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/case-studies" element={<CaseStudiesPage />} />
+          <Route path="/case-studies/shree-hari-yoga-seo" element={<ShreeHariYogaSeo />} />
           <Route path="/blog/:slug" element={<BlogDetail />} />
           <Route path="/test-motion" element={<TestMotion />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="/community" element={<CommunityPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/thank-you" element={<ThankYouPage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/careers" element={<CareersPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

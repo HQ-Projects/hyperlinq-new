@@ -1,10 +1,10 @@
 import React from 'react';
-import ServicePageLayout from '@/layouts/ServicePageLayout';
+import LegalPageLayout from '@/layouts/LegalPageLayout';
 import { ArrowRight } from 'lucide-react';
 
 const RefundPolicy = () => {
   return (
-    <ServicePageLayout
+    <LegalPageLayout
       title="Refund Policy"
       subtitle="Our commitment to fair and transparent refund practices"
       backgroundImage="/images/policy-bg.jpg"
@@ -99,7 +99,7 @@ const RefundPolicy = () => {
           </div>
         </div>
       </section>
-    </ServicePageLayout>
+    </LegalPageLayout>
   );
 };
 

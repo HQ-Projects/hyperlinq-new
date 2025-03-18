@@ -1,43 +1,32 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 // Import the logo directly
 import logoImage from '/public/hq-logo-normal.png';
 
-<<<<<<< HEAD
 const Header: React.FC = () => {
-=======
-const Header = () => {
->>>>>>> 7a95882 (contact form blue added)
-  const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  
+  // Close dropdown when clicking outside
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const location = useLocation();
-
+  
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setServicesDropdownOpen(false);
+        setOpenDropdown(null);
       }
     };
     
-    window.addEventListener('scroll', handleScroll);
     document.addEventListener('mousedown', handleClickOutside);
-    
     return () => {
-      window.removeEventListener('scroll', handleScroll);
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
-  const closeMenu = () => setIsOpen(false);
-  const toggleServicesDropdown = () => setServicesDropdownOpen(!servicesDropdownOpen);
+  const toggleDropdown = (name: string) => {
+    setOpenDropdown(openDropdown === name ? null : name);
+  };
 
   const navLinks = [
     { name: 'Home', href: '/' },
@@ -53,9 +42,19 @@ const Header = () => {
         { name: 'AI & Automation', href: '/services/ai-automation' },
       ]
     },
+    { 
+      name: 'Case Studies', 
+      href: '/case-studies',
+      hasDropdown: true,
+      dropdownItems: [
+        { name: 'SEO - Shree Hari Yoga School', href: '/case-studies/shree-hari-yoga-seo' },
+        { name: 'SEO & PPC - Ahiclothing', href: '/case-studies/ahiclothing-ecommerce' },
+        // Add more case studies as needed
+      ]
+    },
     { name: 'About', href: '/about' },
     { name: 'Blog', href: '/blog' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   // Function to handle navigation
@@ -98,61 +97,59 @@ const Header = () => {
           <nav className="hidden md:flex items-center space-x-8">
             <ul className="flex space-x-8">
               {navLinks.map((link) => (
-                <li key={link.name} className="relative">
+                <div key={link.name} className="relative" ref={link.hasDropdown ? dropdownRef : null}>
                   {link.hasDropdown ? (
-                    <div ref={dropdownRef}>
-                      <button 
-                        onClick={toggleServicesDropdown}
-                        className="flex items-center link-hover text-gray-700 hover:text-hyperlink-primary font-medium transition-colors duration-300"
+                    <>
+                      <button
+                        className="text-gray-600 hover:text-hyperlink-primary px-3 py-2 rounded-md text-sm font-medium flex items-center"
+                        onClick={() => toggleDropdown(link.name)}
                       >
                         {link.name}
-                        <ChevronDown className="ml-1 h-4 w-4" />
+                        <svg
+                          className={`ml-1 h-4 w-4 transition-transform duration-200 ${
+                            openDropdown === link.name ? 'transform rotate-180' : ''
+                          }`}
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
                       </button>
-                      {servicesDropdownOpen && (
-                        <div className="absolute top-full left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
-                          <div className="py-1">
-                            {link.dropdownItems?.map((item) => (
-                              <Link
+                      {openDropdown === link.name && (
+                        <div className="absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
+                          <div className="py-1" role="menu" aria-orientation="vertical">
+                            {link.dropdownItems.map((item) => (
+                              <a
                                 key={item.name}
-                                to={item.href}
+                                href={item.href}
                                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                onClick={() => setServicesDropdownOpen(false)}
+                                role="menuitem"
+                                onClick={() => setOpenDropdown(null)}
                               >
                                 {item.name}
-                              </Link>
+                              </a>
                             ))}
                           </div>
                         </div>
                       )}
-                    </div>
+                    </>
                   ) : (
-                    link.href.startsWith('#') ? (
-                      <a 
-                        href={link.href}
-                        className="link-hover text-gray-700 hover:text-hyperlink-primary font-medium transition-colors duration-300"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handleNavigation(link.href);
-                        }}
-                      >
-                        {link.name}
-                      </a>
-                    ) : (
-                      <Link 
-                        to={link.href}
-                        className="link-hover text-gray-700 hover:text-hyperlink-primary font-medium transition-colors duration-300"
-                      >
-                        {link.name}
-                      </Link>
-                    )
+                    <a
+                      href={link.href}
+                      className="text-gray-600 hover:text-hyperlink-primary px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      {link.name}
+                    </a>
                   )}
-                </li>
+                </div>
               ))}
             </ul>
-            <Link to="#contact" className="btn-primary" onClick={(e) => {
-              e.preventDefault();
-              handleNavigation('#contact');
-            }}>
+            <Link to="/contact" className="btn-primary">
               Get Started
             </Link>
           </nav>
@@ -228,10 +225,7 @@ const Header = () => {
             </li>
           ))}
           <li className="animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-            <Link to="#contact" className="btn-primary" onClick={(e) => {
-              e.preventDefault();
-              handleNavigation('#contact');
-            }}>
+            <Link to="/contact" className="btn-primary">
               Get Started
             </Link>
           </li>

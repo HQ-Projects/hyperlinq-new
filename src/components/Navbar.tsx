@@ -1,15 +1,31 @@
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
-  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  
+  // Close dropdown when clicking outside
   const dropdownRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setOpenDropdown(null);
+      }
+    };
+    
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
+  // Add scroll event listener
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 20) {
@@ -18,25 +34,16 @@ const Navbar = () => {
         setScrolled(false);
       }
     };
-
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setServicesDropdownOpen(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    document.addEventListener('mousedown', handleClickOutside);
     
+    window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
-  const closeMenu = () => setIsOpen(false);
-  const toggleServicesDropdown = () => setServicesDropdownOpen(!servicesDropdownOpen);
+  const toggleDropdown = (name: string) => {
+    setOpenDropdown(openDropdown === name ? null : name);
+  };
 
   const navLinks = [
     { name: 'Home', href: '/' },
@@ -52,15 +59,24 @@ const Navbar = () => {
         { name: 'AI & Automation', href: '/services/ai-automation' },
       ]
     },
+    { 
+      name: 'Case Studies', 
+      href: '/case-studies',
+      hasDropdown: true,
+      dropdownItems: [
+        { name: 'SEO - Shree Hari Yoga School', href: '/case-studies/shree-hari-yoga-seo' },
+        { name: 'SEO & PPC - Ahiclothing', href: '/case-studies/ahiclothing-ecommerce' },
+        // Add more case studies as needed
+      ]
+    },
     { name: 'About', href: '/about' },
     { name: 'Blog', href: '/blog' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   // Function to handle navigation
   const handleNavigation = (href: string) => {
     closeMenu();
-    setServicesDropdownOpen(false);
     
     if (href.startsWith('#') && window.location.pathname === '/') {
       // If on homepage and clicking an anchor link
@@ -72,6 +88,15 @@ const Navbar = () => {
       // If on another page and clicking an anchor link, navigate to homepage first
       window.location.href = '/' + href;
     }
+  };
+
+  // Add missing functions
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
   };
 
   return (
@@ -110,13 +135,13 @@ const Navbar = () => {
                   {link.hasDropdown ? (
                     <div ref={dropdownRef}>
                       <button 
-                        onClick={toggleServicesDropdown}
+                        onClick={toggleDropdown}
                         className="flex items-center link-hover text-gray-700 hover:text-hyperlink-primary font-medium transition-colors duration-300"
                       >
                         {link.name}
                         <ChevronDown className="ml-1 h-4 w-4" />
                       </button>
-                      {servicesDropdownOpen && (
+                      {openDropdown === link.name && (
                         <div className="absolute top-full left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
                           <div className="py-1">
                             {link.dropdownItems?.map((item) => (
@@ -124,7 +149,7 @@ const Navbar = () => {
                                 key={item.name}
                                 to={item.href}
                                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                onClick={() => setServicesDropdownOpen(false)}
+                                onClick={() => setOpenDropdown(null)}
                               >
                                 {item.name}
                               </Link>
@@ -157,10 +182,7 @@ const Navbar = () => {
                 </li>
               ))}
             </ul>
-            <Link to="#contact" className="btn-primary" onClick={(e) => {
-              e.preventDefault();
-              handleNavigation('#contact');
-            }}>
+            <Link to="/contact" className="btn-primary" onClick={closeMenu}>
               Get Started
             </Link>
           </div>
@@ -171,7 +193,7 @@ const Navbar = () => {
             className="md:hidden text-gray-700 hover:text-hyperlink-primary focus:outline-none z-10"
             aria-label="Toggle menu"
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
@@ -180,7 +202,7 @@ const Navbar = () => {
       <div 
         className={cn(
           'fixed inset-0 z-0 flex items-center justify-center bg-white transition-all duration-500 ease-in-out',
-          isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
         )}
       >
         <ul className="flex flex-col items-center space-y-8 text-2xl">
@@ -237,10 +259,7 @@ const Navbar = () => {
             </li>
           ))}
           <li className="animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-            <Link to="#contact" className="btn-primary" onClick={(e) => {
-              e.preventDefault();
-              handleNavigation('#contact');
-            }}>
+            <Link to="/contact" className="btn-primary" onClick={closeMenu}>
               Get Started
             </Link>
           </li>

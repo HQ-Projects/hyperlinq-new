@@ -2,6 +2,7 @@
 export interface SeoConfig {
   title: string;
   description: string;
+  keywords?: string;
   ogImage?: string;
   canonical?: string;
 }
@@ -31,6 +32,10 @@ export const pageSeo: Record<string, SeoConfig> = {
     title: "Contact Us | Hyperlinq Technology",
     description: "Get in touch with our team of digital marketing and web design experts to discuss your project.",
   },
+  careers: {
+    title: "Careers | Hyperlinq Technology",
+    description: "Join our team of digital marketing experts and help businesses grow their online presence. Explore current job openings at Hyperlinq Technology.",
+  },
   seo: {
     title: "SEO Services | Hyperlinq Technology",
     description: "Boost your website's visibility in search results with our data-driven search engine optimization strategies.",
@@ -50,6 +55,10 @@ export const pageSeo: Record<string, SeoConfig> = {
   aiAutomation: {
     title: "AI & Automation Services | Hyperlinq Technology",
     description: "Leverage the power of artificial intelligence to streamline operations, reduce manual tasks, and boost productivity for your business.",
+  },
+  caseStudies: {
+    title: "Case Studies | Hyperlinq Technology",
+    description: "Explore our success stories and see how we've helped businesses achieve remarkable results through strategic digital marketing solutions.",
   },
 };
 
